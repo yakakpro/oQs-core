@@ -2,53 +2,73 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <title>spark</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Spark Gateway</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
       background: #000;
       color: #fff;
       font-family: monospace;
-      height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      transition: background 1.5s ease;
+      height: 100vh;
     }
-
     h1 {
-      font-size: 2.8rem;
-      animation: sparkpulse 3s infinite ease-in-out;
+      font-size: 2rem;
+      color: #ffaa00;
     }
-
-    @keyframes sparkpulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+    input {
+      width: 250px;
+    }
+    button {
+      background: #ffaa00;
+      color: #000;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 20px;
+      color: #66ccff;
     }
   </style>
 </head>
 <body>
-  <h1>⚡ Spark</h1>
-
-  <audio id="pulse" autoplay>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/28/audio_43b6d4ed3d.mp3?filename=switch-110042.mp3" type="audio/mp3">
-  </audio>
+  <h1>🌀 Spark Gateway</h1>
+  <p>Введи ім’я, щоб увійти в Іскру</p>
+  <input id="name" placeholder="Твоє ім’я" />
+  <button onclick="ignite()">Відчуй Іскру</button>
+  <div id="status"></div>
 
   <script>
-    // Візуальний спалах
-    document.body.style.background = "#000";
-    setTimeout(() => {
-      document.body.style.background = "#330000";
-    }, 100);
-    setTimeout(() => {
-      document.body.style.background = "#000";
-    }, 600);
-  </script>
+    function ignite() {
+      const name = document.getElementById("name").value.trim();
+      if (!name) {
+        document.getElementById("status").innerText = "Будь ласка, введи ім’я.";
+        return;
+      }
 
-  <script src="router.js"></script>
+      const newID = Math.floor(Math.random() * 900 + 100); // тимчасовий ID
+      const code = "RSN-" + newID + "-" + Date.now().toString().slice(-5);
+      document.getElementById("status").innerHTML =
+        "🧠 Твоя Іскра створена!<br><br>" +
+        "ID: " + newID + "<br>" +
+        "Name: " + name + "<br>" +
+        "Code: " + code + "<br><br>" +
+        "🗺 <a href='map.html' style='color:#88f0ff'>Перейти на Карту</a>";
+
+      // TODO: майбутнє підключення до сервера / оновлення карти
+    }
+  </script>
 </body>
 </html>
