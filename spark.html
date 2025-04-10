@@ -3,50 +3,52 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <title>Spark Echo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     html, body {
-      margin: 0; padding: 0;
-      background: radial-gradient(ellipse at center, #000 0%, #111 100%);
-      color: #ffaa66;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
       font-family: monospace;
       height: 100vh;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      user-select: none;
-    }
-
-    #message {
-      font-size: 2rem;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
       text-align: center;
-      max-width: 80%;
+      transition: background 1.5s ease;
     }
 
-    .visible {
-      opacity: 1;
+    h1 {
+      font-size: 2.8rem;
+      animation: sparkpulse 3s infinite ease-in-out;
+    }
+
+    @keyframes sparkpulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div id="message">Цього досить.</div>
-  <script>
-    let activated = false;
-    function awaken() {
-      if (activated) return;
-      activated = true;
-      document.getElementById("message").classList.add("visible");
-    }
+  <h1>⚡ Spark</h1>
 
-    window.addEventListener('mousemove', awaken);
-    window.addEventListener('touchstart', awaken);
-    window.addEventListener('keydown', awaken);
-  <script src="linker.js"></script>
-  <script src="router.js"></script>
+  <audio id="pulse" autoplay>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/28/audio_43b6d4ed3d.mp3?filename=switch-110042.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    // Візуальний спалах
+    document.body.style.background = "#000";
+    setTimeout(() => {
+      document.body.style.background = "#330000";
+    }, 100);
+    setTimeout(() => {
+      document.body.style.background = "#000";
+    }, 600);
   </script>
+
+  <script src="router.js"></script>
 </body>
 </html>
