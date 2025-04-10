@@ -72,13 +72,16 @@
       { from: spark0, to: spark1 }
     ];
 
+    let pulse = 0;
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // connections
       for (const link of links) {
-        ctx.strokeStyle = "#444";
-        ctx.lineWidth = 1;
+        const isResonant = link.from.id === "0" && link.to.id === "1";
+        ctx.strokeStyle = isResonant ? `rgba(255, 200, 100, ${0.5 + 0.5 * Math.sin(pulse)})` : "#333";
+        ctx.lineWidth = isResonant ? 2 : 1;
         ctx.beginPath();
         ctx.moveTo(link.from.x, link.from.y);
         ctx.lineTo(link.to.x, link.to.y);
@@ -94,6 +97,9 @@
         ctx.strokeStyle = "#fff";
         ctx.stroke();
       }
+
+      pulse += 0.1;
+      requestAnimationFrame(draw);
     }
 
     canvas.addEventListener("click", (e) => {
