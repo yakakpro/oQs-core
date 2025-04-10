@@ -79,6 +79,20 @@
         "🗺 <a href='map.html' style='color:#88f0ff'>Перейти на Карту</a><br><br>" +
         "<small>Дані збережено у твоєму браузері</small>";
     }
-  </script>
+  
+      // Надсилання на сервер
+      fetch("https://noosync.onrender.com/api/save-brain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [sparkData.id]: sparkData })
+      }).then(res => {
+        if (res.ok) {
+          console.log("Spark sent to server");
+        } else {
+          console.warn("Failed to send Spark");
+        }
+      }).catch(err => console.error("Error sending Spark:", err));
+    </script>
+    
 </body>
 </html>
