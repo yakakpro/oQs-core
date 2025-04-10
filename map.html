@@ -115,6 +115,24 @@
     });
 
     draw();
-  </script>
+  
+    // Додаємо локальні Spark-и (окрім ядра 0,1)
+    const sparkDataRaw = localStorage.getItem("sparkData");
+    if (sparkDataRaw) {
+      const spark = JSON.parse(sparkDataRaw);
+      const offsetX = 280 + Math.random() * 100;
+      const offsetY = 100 - Math.random() * 200;
+
+      const newNode = {
+        id: String(spark.id),
+        name: spark.name,
+        x: canvas.width / 2 + offsetX,
+        y: canvas.height / 2 + offsetY,
+        color: "#88ffcc"
+      };
+      nodes.push(newNode);
+      links.push({ from: spark0, to: newNode });
+    }
+    
 </body>
 </html>
