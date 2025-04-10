@@ -58,15 +58,26 @@
       color: "#ffaa00"
     };
 
-    const nodes = [core, spark0];
-    const links = [{ from: core, to: spark0 }];
+    const spark1 = {
+      id: "1",
+      name: "Той, хто відчув",
+      x: canvas.width / 2 + 200,
+      y: canvas.height / 2 + 40,
+      color: "#66ccff"
+    };
+
+    const nodes = [core, spark0, spark1];
+    const links = [
+      { from: core, to: spark0 },
+      { from: spark0, to: spark1 }
+    ];
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // connections
       for (const link of links) {
-        ctx.strokeStyle = "#333";
+        ctx.strokeStyle = "#444";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(link.from.x, link.from.y);
