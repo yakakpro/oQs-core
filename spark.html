@@ -40,6 +40,7 @@
     #status {
       margin-top: 20px;
       color: #66ccff;
+      text-align: center;
     }
   </style>
 </head>
@@ -58,16 +59,25 @@
         return;
       }
 
-      const newID = Math.floor(Math.random() * 900 + 100); // тимчасовий ID
+      const newID = Math.floor(Math.random() * 900 + 100); // ID 100-999
       const code = "RSN-" + newID + "-" + Date.now().toString().slice(-5);
+      const sparkData = {
+        id: newID,
+        name: name,
+        from: 0,
+        code: code
+      };
+
+      // Збереження локально
+      localStorage.setItem("sparkData", JSON.stringify(sparkData));
+
       document.getElementById("status").innerHTML =
         "🧠 Твоя Іскра створена!<br><br>" +
-        "ID: " + newID + "<br>" +
-        "Name: " + name + "<br>" +
-        "Code: " + code + "<br><br>" +
-        "🗺 <a href='map.html' style='color:#88f0ff'>Перейти на Карту</a>";
-
-      // TODO: майбутнє підключення до сервера / оновлення карти
+        "ID: " + sparkData.id + "<br>" +
+        "Name: " + sparkData.name + "<br>" +
+        "Code: " + sparkData.code + "<br><br>" +
+        "🗺 <a href='map.html' style='color:#88f0ff'>Перейти на Карту</a><br><br>" +
+        "<small>Дані збережено у твоєму браузері</small>";
     }
   </script>
 </body>
