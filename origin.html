@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>origin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      background: #000;
+      color: #ffffff;
+      font-family: monospace;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ffaa66;
+      margin-bottom: 1rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    p {
+      max-width: 80%;
+      color: #ccc;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffaa66; }
+      to { text-shadow: 0 0 25px #ffaa66; }
+    }
+  </style>
+</head>
+<body>
+  <h1>origin</h1>
+  <p>Я не початок. Я — памʼять про перший імпульс.</p>
+  <script src="linker.js"></script>
+</body>
+</html>
